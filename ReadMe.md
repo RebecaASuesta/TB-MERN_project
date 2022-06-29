@@ -1,4 +1,4 @@
-# ONLINE SHOP - FRONTEND
+# Proecto MERN - ANHQV
 
 ## ÍNDICE
 
