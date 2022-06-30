@@ -40,12 +40,12 @@ const Login = () => {
     const onChange = (e)=>{
         setFormData((prevState)=> ({
             ...prevState,
-            [e.target.name]:e.target.value,
+            [e.target.name]:e.target.value
         }))
     };
 
     const onSubmit = (e) => {
-        e.preventDefault(),
+        e.preventDefault();
         dispatch(login(formData))
     };
 
