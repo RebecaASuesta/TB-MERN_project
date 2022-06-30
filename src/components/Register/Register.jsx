@@ -23,7 +23,13 @@ const Register = () => {
                 description: message
             })
         }
-    }, [isSuccess]);
+        if (isError) {
+            notification.error({
+                message: "Error",
+                description: message
+            })
+        }
+    }, [isSuccess, isError, message]);
 
     const onChange = (e)=>{
         setFormData((prevState)=> ({
