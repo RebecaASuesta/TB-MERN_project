@@ -22,7 +22,7 @@ const Header = () => {
                 {user ?
                     <>
                         <span><Link to="/" onClick={onLogout}>Logout</Link></span>
-                        <span><Link to="/profile" >{user.user.name}</Link> </span>
+                        <span><Link to="/profile">{user.user.name}</Link> </span>
                     </>
                 : 
                     <>
@@ -34,5 +34,5 @@ const Header = () => {
         </nav>
     )
 }
-  
+
 export default Header
