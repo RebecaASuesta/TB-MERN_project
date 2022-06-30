@@ -1,8 +1,9 @@
-import React from 'react';
-import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Login from './components/Login/Login';
-import Register from './components/Register/Register';
+import React from 'react'
+import './App.css'
+import 'antd/dist/antd'
+import Login from './components/Login/Login'
+import Register from './components/Register/Register'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
