@@ -14,7 +14,7 @@ const Register = () => {
 
     const dispatch = useDispatch();
 
-    const { isSuccess, message } = useSelector((state) => state.auth);
+    const { isSuccess, isError, message } = useSelector((state) => state.auth);
 
     useEffect(() => {
         if (isSuccess) {
