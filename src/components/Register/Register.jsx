@@ -37,9 +37,21 @@ const Register = () => {
     <form onSubmit={onSubmit}>
         <input type="text" name="name" value={name} onChange={onChange} />
         <input type="email" name="email" value={email} onChange={onChange}/>
-        <input type="password" name="password" value={password} onChange={onChange}/>
+        <input 
+            type="password"
+            name="password"
+            value={password}
+            onChange={onChange}
+        />
+        <input
+            type="password"
+            name="password2"
+            value={password2}
+            onChange={onChange}
+        />
         <button type="submit">Register</button>
     </form>
   )
-}
+};
+
 export default Register
