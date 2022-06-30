@@ -4,7 +4,7 @@ import authService from "./authService"
 const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
-  user: null
+  user: user ? user : null
 };
 
 export const register = createAsyncThunk(
