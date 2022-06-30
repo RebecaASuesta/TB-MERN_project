@@ -5,14 +5,14 @@ import { useParams } from "react-router-dom"
 import { getById } from "../../../../features/posts/postsSlice"
 
 const PostDetail = () => {
-    const { id } = useParams();
+    const { _id } = useParams();
 
     const dispatch = useDispatch();
 
     const { post } = useSelector((state) => state.posts);
 
     useEffect(() => {
-        dispatch(getById(id))
+        dispatch(getById(_id))
     }, []);
 
     return (

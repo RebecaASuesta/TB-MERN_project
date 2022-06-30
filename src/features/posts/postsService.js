@@ -7,8 +7,8 @@ const getAll = async () => {
     return res.data
 };
 
-const getById = async (id) => {
-    const res = await axios.get(API_URL + "/posts/" + id);
+const getById = async (_id) => {
+    const res = await axios.get(API_URL + "/posts/" + _id);
     return res.data;
 };
 

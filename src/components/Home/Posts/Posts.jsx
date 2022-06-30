@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { getAll, reset } from '../../../features/posts/postsSlice'
 import Post from '../../Post/Post'
 
@@ -9,9 +10,13 @@ const Posts = () => {
 
     const dispatch = useDispatch();
 
-    useEffect(async () => {
+    const getPostsAndReset = async () => {
         await dispatch(getAll());
-        await dispatch(reset())
+        dispatch(reset())
+    };
+
+    useEffect(() => {
+        getPostsAndReset();
     }, []);
 
     if (isLoading) {
@@ -21,7 +26,7 @@ const Posts = () => {
     return (
         <div>
             <h1>Posts</h1>
-            <Post/>
+            <Post />
         </div>
     )
 }
