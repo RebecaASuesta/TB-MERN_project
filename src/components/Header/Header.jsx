@@ -12,15 +12,18 @@ const Header = () => {
     const onLogout = (e) => {
         e.preventDefault();
         dispatch(logout());
-        navigate("/login")
+        navigate("/")
     };
 
     return (
         <nav>
             <span>Header</span>
             <div>
-                {user ? 
-                    <span><Link to="/" onClick={onLogout}>Logout</Link></span>
+                {user ?
+                    <>
+                        <span><Link to="/" onClick={onLogout}>Logout</Link></span>
+                        <span><Link to="/profile" >{user.user.name}</Link> </span>
+                    </>
                 : 
                     <>
                         <span><Link to="/login">Login</Link></span>
