@@ -19,18 +19,18 @@ export const register = createAsyncThunk(
       const message = error.response.data.errors[0].message;
       return thunkAPI.rejectWithValue(message)
     }
-});
+  });
 
 export const login = createAsyncThunk(
   "auth/login",
   async (user, thunkAPI) => {
-  try {
-    return await authService.login(user)
-  } catch (error) {
-    const message = error.response.data.message;
-    return thunkAPI.rejectWithValue(message)
-  }
-});
+    try {
+      return await authService.login(user)
+    } catch (error) {
+      const message = error.response.data.message;
+      return thunkAPI.rejectWithValue(message)
+    }
+  });
 
 export const logout = createAsyncThunk("auth/logout", async () => {
   try {
@@ -44,27 +44,27 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {},
-    extraReducers: (builder) => {
-      builder
-        .addCase(login.fulfilled, (state, action) => {
-          state.user = action.payload
-        })
-        .addCase(login.rejected, (state, action) => {
-          state.isError = true;
-          state.message = action.payload
-        })  
-        .addCase(logout.fulfilled, (state) => {
-          state.user = null
-        })
-        .addCase(register.fulfilled, (state, action) => {
-          state.isSuccess = true;
-          state.message = action.payload.message
-        })
-        .addCase(register.rejected, (state, action) => {
-          state.isError = true;
-          state.message = action.payload
-        })  
-    }
+  extraReducers: (builder) => {
+    builder
+      .addCase(login.fulfilled, (state, action) => {
+        state.user = action.payload
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.isError = true;
+        state.message = action.payload
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.user = null
+      })
+      .addCase(register.fulfilled, (state, action) => {
+        state.isSuccess = true;
+        state.message = action.payload.message
+      })
+      .addCase(register.rejected, (state, action) => {
+        state.isError = true;
+        state.message = action.payload
+      })
+  }
 });
 
 export const { reset } = authSlice.actions;
