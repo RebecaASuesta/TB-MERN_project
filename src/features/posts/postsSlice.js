@@ -17,6 +17,17 @@ export const getAll = createAsyncThunk(
         }
     });
 
+export const getById = createAsyncThunk(
+    "posts/getById",
+    async (id) => {
+        try {
+            return await postsService.getById(id);
+        } catch (error) {
+            console.error(error);
+        }
+    });
+
+
 export const postsSlice = createSlice({
     name: "posts",
     initialState,
