@@ -1,17 +1,24 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import authService from "./authService"
 
 const initialState = {
-  user: null,
+  user: null
 };
 
-export const register = createAsyncThunk('auth/register',async(user)=>{
-    console.log(user)
+export const register = createAsyncThunk(
+  'auth/register',
+  async(user)=>{
+    try {
+      return await authService.register(user)
+    } catch (error) {
+      console.error(error)
+    }
 }); 
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {}
 });
 
 export default authSlice.reducer
