@@ -42,7 +42,10 @@ export const postsSlice = createSlice({
         });
         builder.addCase(getAll.pending, (state) => {
             state.isLoading = true
-        })
+        });
+        builder.addCase(getById.fulfilled, (state, action) => {
+            state.post = action.payload
+        });      
     }
 });
 
