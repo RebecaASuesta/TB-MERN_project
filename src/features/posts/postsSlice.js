@@ -18,7 +18,7 @@ export const getAll = createAsyncThunk(
     });
 
 export const getById = createAsyncThunk(
-    "posts/getById",
+    "posts/getById/id",
     async (_id) => {
         try {
             return await postsService.getById(_id);
@@ -45,7 +45,7 @@ export const postsSlice = createSlice({
         });
         builder.addCase(getById.fulfilled, (state, action) => {
             state.post = action.payload
-        });      
+        });
     }
 });
 
