@@ -11,6 +11,18 @@ const PostDetail = () => {
 
     const { post } = useSelector((state) => state.posts);
 
+    console.log("post", post)
+
+    const commentBody = post.commentIds?.map(comment => {
+        return (
+            <span key = {comment._id}>
+                {comment.body}
+            </span>
+        )
+    });
+
+    // console.log("commentBody", commentBody)
+
     useEffect(() => {
         dispatch(getById(_id))
     }, []);
@@ -18,8 +30,9 @@ const PostDetail = () => {
     return (
         <div>
             <h1>PostDetail</h1>
-            <p>{post.title}</p>
+            <h3>{post.title}</h3>
             <p>{post.body}</p>
+            <p>{commentBody}</p>
         </div>
     )
 };

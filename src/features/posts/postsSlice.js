@@ -4,7 +4,8 @@ import postsService from "./postsService"
 const initialState = {
     posts: [],
     isLoading: false,
-    post: {}
+    post: {},
+    comments: []
 };
 
 export const getAll = createAsyncThunk(
