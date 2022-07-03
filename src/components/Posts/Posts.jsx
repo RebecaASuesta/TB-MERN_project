@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { getAll, reset } from '../../../features/posts/postsSlice'
-import Post from '../../Post/Post'
+import { getAll, reset } from '../../features/posts/postsSlice'
+import Post from './Post/Post'
 
 const Posts = () => {
 

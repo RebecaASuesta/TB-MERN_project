@@ -5,9 +5,10 @@ import Register from './components/Register/Register'
 import Home from './components/Home/Home'
 import Header from './components/Header/Header'
 import Profile from './components/Profile/Profile'
-import PostDetail from './components/Home/Posts/PostDetail/PostDetail'
+import PostDetail from './components/Posts/Post/PostDetail/PostDetail'
 import './App.css'
 import 'antd/dist/antd'
+import Posts from './components/Posts/Posts'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/posts" element={<Posts />} />
           <Route path="/posts/id/:_id" element={<PostDetail />} />
         </Routes>
       </BrowserRouter>
