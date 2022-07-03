@@ -31,11 +31,11 @@ const Login = () => {
                 description: message
             });
             setTimeout(() => {
-                navigate("/profile");
+                navigate("/");
             }, 2000)
         }
         dispatch(reset())
-    }, [isError, isSuccess, message]);
+    }, [isError, isSuccess, message, navigate, dispatch]);
 
     const onChange = (e)=>{
         setFormData((prevState)=> ({
