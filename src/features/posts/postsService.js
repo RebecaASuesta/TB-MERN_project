@@ -10,16 +10,27 @@ const getAll = async () => {
 const getById = async (_id) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const res = await axios.get(API_URL + "/posts/id/" + _id, {
-     headers: {
-        authorization: user?.token
-     }
+        headers: {
+            authorization: user?.token
+        }
     });
-    return res.data;
+    return res.data
+};
+
+const create = async () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const res = await axios.post(API_URL + "/posts", {
+        headers: {
+            authorization: user?.token
+        }
+    });
+    return res.data
 };
 
 const postsService = {
     getAll,
-    getById
+    getById,
+    create
 };
 
 export default postsService

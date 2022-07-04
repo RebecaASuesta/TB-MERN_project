@@ -21,8 +21,6 @@ const PostDetail = () => {
         )
     });
 
-    // console.log("commentBody", commentBody)
-
     useEffect(() => {
         dispatch(getById(_id))
     }, []);

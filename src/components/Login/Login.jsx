@@ -6,8 +6,8 @@ import { notification } from "antd"
 
 const Login = () => {
     const [formData, setFormData] = useState({
-        email:'',
-        password:''
+        email: '',
+        password: ''
     });
 
     const { email, password } = formData;
@@ -53,7 +53,7 @@ const Login = () => {
         <form onSubmit={onSubmit}>
             <input type="email" name="email" value={email} onChange={onChange}/>
             <input type="password" name="password" value={password} onChange={onChange}/>
-            <button type="submit">Login</button>
+            <button type="submit">Log in</button>
         </form>
     )
 };
