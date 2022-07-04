@@ -17,9 +17,9 @@ const getById = async (_id) => {
     return res.data
 };
 
-const create = async () => {
+const create = async (formData) => {
     const user = JSON.parse(localStorage.getItem("user"));
-    const res = await axios.post(API_URL + "/posts", {
+    const res = await axios.post(API_URL + "/posts", formData, {
         headers: {
             authorization: user?.token
         }
@@ -31,6 +31,6 @@ const postsService = {
     getAll,
     getById,
     create
-};
+}
 
 export default postsService

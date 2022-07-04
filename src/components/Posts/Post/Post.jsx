@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
-import { create, reset } from "../../../features/posts/postsSlice"
+import { reset, create, getAll } from "../../../features/posts/postsSlice"
 import { notification } from "antd"
 
 const Post = () => {
@@ -44,12 +44,11 @@ const Post = () => {
         }))
     };
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.set("title", e.target.title.value);
-        formData.set("body", e.target.body.value);
-        dispatch(create(formData));
+        await dispatch(create(formData));
+        await dispatch(getAll());
+        await dispatch(reset())
     };
 
     const post = posts.map((post) => {
