@@ -49,6 +49,16 @@ export const createComment = createAsyncThunk(
     }
 });
 
+export const getInfo = createAsyncThunk(
+    "users/getInfo",
+    async () => {
+        try {
+            return await postsService.getInfo();
+        } catch (error) {
+            console.error(error);
+        }
+    });
+
 export const postsSlice = createSlice({
     name: "posts",
     initialState,

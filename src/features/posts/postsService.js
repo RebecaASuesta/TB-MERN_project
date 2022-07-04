@@ -37,11 +37,18 @@ const createComment = async (commentData) => {
     return res.data
 };
 
+const getInfo = async () => {
+    const res = await axios.get(API_URL + "/users/getInfo");
+    console.log("postService", res.data)
+    return res.data
+};
+
 const postsService = {
     getAll,
     getById,
     create,
-    createComment
+    createComment,
+    getInfo
 }
 
 export default postsService
