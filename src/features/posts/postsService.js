@@ -38,8 +38,12 @@ const createComment = async (commentData) => {
 };
 
 const getInfo = async () => {
-    const res = await axios.get(API_URL + "/users/getInfo");
-    console.log("postService", res.data)
+    const user = JSON.parse(localStorage.getItem("user"));
+    const res = await axios.get(API_URL + "/users/getInfo", {
+        headers: {
+            authorization: user?.token
+        }
+    });
     return res.data
 };
 

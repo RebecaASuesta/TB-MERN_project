@@ -31,7 +31,7 @@ const Login = () => {
                 description: message
             });
             setTimeout(() => {
-                navigate("/");
+                navigate("/posts");
             }, 2000)
         }
         dispatch(reset())

@@ -4,7 +4,11 @@ import { Link } from "react-router-dom"
 import { getInfo, reset } from "../../features/posts/postsSlice"
 
 const Profile = () => {
-    const { user, userPosts } = useSelector((state) => state.auth);
+    const { user } = useSelector((state) => state.auth);
+
+    const { userPosts } = useSelector((state) => state.posts);
+
+    const postIds = userPosts.postIds;
 
     const dispatch = useDispatch();
 
@@ -17,7 +21,7 @@ const Profile = () => {
         getUserPosts()
     }, []);
 
-    const userPost = userPosts?.map((userPost) => {
+    const userPost = postIds?.map((userPost) => {
         return (
             <div key={userPost._id}>
                 <Link to={"/posts/id/" + userPost._id}>

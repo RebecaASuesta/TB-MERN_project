@@ -6,7 +6,8 @@ const initialState = {
     isLoading: false,
     post: {},
     comments: [],
-    formData: {}
+    formData: {},
+    userPosts: []
 };
 
 export const getAll = createAsyncThunk(
@@ -82,6 +83,12 @@ export const postsSlice = createSlice({
         });
         builder.addCase(createComment.fulfilled, (state, action) => {
             state.post.commentIds = [ ...state.post.commentIds, action.payload.comment ]
+        });
+        builder.addCase(getInfo.fulfilled, (state, action) => {
+            state.userPosts = action.payload
+        });
+        builder.addCase(getInfo.pending, (state) => {
+            state.isLoading = true
         });
     }
 })
