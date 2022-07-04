@@ -39,6 +39,16 @@ export const create = createAsyncThunk(
     }
 });
 
+export const createComment = createAsyncThunk(
+    "comments/create",
+    async (commentData) => {
+    try {
+        return await postsService.createComment(commentData);
+    } catch (error) {
+        console.error(error);
+    }
+});
+
 export const postsSlice = createSlice({
     name: "posts",
     initialState,
@@ -59,6 +69,9 @@ export const postsSlice = createSlice({
         });
         builder.addCase(create.fulfilled, (state, action) => {
             state.posts = [ ...state.posts, action.payload.post ]
+        });
+        builder.addCase(createComment.fulfilled, (state, action) => {
+            state.post.commentIds = [ ...state.post.commentIds, action.payload.comment ]
         });
     }
 })

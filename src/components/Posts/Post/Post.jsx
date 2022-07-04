@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
-import { reset, create, getAll } from "../../../features/posts/postsSlice"
+import { reset, create } from "../../../features/posts/postsSlice"
 import { notification } from "antd"
 
 const Post = () => {
