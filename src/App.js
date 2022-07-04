@@ -6,9 +6,10 @@ import Home from './components/Home/Home'
 import Header from './components/Header/Header'
 import Profile from './components/Profile/Profile'
 import PostDetail from './components/Posts/Post/PostDetail/PostDetail'
+import Posts from './components/Posts/Posts'
+import Footer from './components/Footer/Footer'
 import './App.css'
 import 'antd/dist/antd'
-import Posts from './components/Posts/Posts'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/posts" element={<Posts />} />
           <Route path="/posts/id/:_id" element={<PostDetail />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   )
