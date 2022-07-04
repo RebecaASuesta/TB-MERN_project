@@ -47,8 +47,8 @@ const Post = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
         await dispatch(create(formData));
-        await dispatch(getAll());
-        await dispatch(reset())
+        e.target.title.value = "";
+        e.target.body.value = ""
     };
 
     const post = posts.map((post) => {
