@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './components/Login/Login'
 import Register from './components/Register/Register'
 import Home from './components/Home/Home'
+import Search from './components/Home/Search/Search'
 import Header from './components/Header/Header'
 import Profile from './components/Profile/Profile'
 import PostDetail from './components/Posts/Post/PostDetail/PostDetail'
@@ -18,6 +19,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/search/:postName" element={<Search />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
