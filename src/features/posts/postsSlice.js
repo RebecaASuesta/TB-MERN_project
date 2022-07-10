@@ -7,7 +7,8 @@ const initialState = {
     post: {},
     comments: [],
     formData: {},
-    userPosts: []
+    userPosts: [],
+    likes: []
 };
 
 export const getAll = createAsyncThunk(
@@ -33,22 +34,22 @@ export const getById = createAsyncThunk(
 export const create = createAsyncThunk(
     "posts/create",
     async (formData) => {
-    try {
-        return await postsService.create(formData);
-    } catch (error) {
-        console.error(error);
-    }
-});
+        try {
+            return await postsService.create(formData);
+        } catch (error) {
+            console.error(error);
+        }
+    });
 
 export const createComment = createAsyncThunk(
     "comments/create",
     async (commentData) => {
-    try {
-        return await postsService.createComment(commentData);
-    } catch (error) {
-        console.error(error);
-    }
-});
+        try {
+            return await postsService.createComment(commentData);
+        } catch (error) {
+            console.error(error);
+        }
+    });
 
 export const getInfo = createAsyncThunk(
     "users/getInfo",
@@ -57,6 +58,26 @@ export const getInfo = createAsyncThunk(
             return await postsService.getInfo();
         } catch (error) {
             console.error(error);
+        }
+    });
+
+export const like = createAsyncThunk(
+    "posts/like/id/",
+    async (_id) => {
+        try {
+            return await postsService.like(_id);
+        } catch (error) {
+            console.error(error);
+        }
+    });
+
+export const dislike = createAsyncThunk(
+    "posts/dislike/id/",
+    async (_id) => {
+        try {
+            return await postsService.dislike(_id)
+        } catch (error) {
+            console.error(error)
         }
     });
 
@@ -79,10 +100,11 @@ export const postsSlice = createSlice({
             state.post = action.payload
         });
         builder.addCase(create.fulfilled, (state, action) => {
-            state.posts = [ ...state.posts, action.payload.post ]
+            console.log(action.payload);
+            state.posts = [...state.posts, action.payload.post]
         });
         builder.addCase(createComment.fulfilled, (state, action) => {
-            state.post.commentIds = [ ...state.post.commentIds, action.payload.comment ]
+            state.post.commentIds = [...state.post.commentIds, action.payload.comment]
         });
         builder.addCase(getInfo.fulfilled, (state, action) => {
             state.userPosts = action.payload
@@ -90,7 +112,26 @@ export const postsSlice = createSlice({
         builder.addCase(getInfo.pending, (state) => {
             state.isLoading = true
         });
-    }
+        builder.addCase(like.fulfilled, (state, action) => {
+            console.log(action.payload);
+            const posts = state.posts.map((post) => {
+                if (post._id === action.payload._id) {
+                    post = action.payload
+                }
+                return post
+            })
+            state.posts = posts
+        });
+        builder.addCase(dislike.fulfilled, (state, action) => {
+            const posts = state.posts.map((post) => {
+                if (post._id === action.payload._id) {
+                    post = action.payload;
+                }
+                return post
+            })
+            state.posts = posts
+        })
+}
 })
 
 export const { reset } = postsSlice.actions

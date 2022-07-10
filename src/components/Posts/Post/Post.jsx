@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
-import { reset, create } from "../../../features/posts/postsSlice"
+import { reset, create, like, dislike } from "../../../features/posts/postsSlice"
 import { notification } from "antd"
+import "antd/dist/antd.css"
+import { HeartOutlined, HeartFilled } from "@ant-design/icons"
 
-const Post = () => {
+const Post = (likes, _id) => {
     const [formData, setFormData] = useState({
         title: '',
         body: ''
@@ -16,7 +18,7 @@ const Post = () => {
 
     const dispatch = useDispatch();
 
-    const { posts, isError, isSuccess, message } = useSelector((state) => state.posts);
+    const { posts, user, isError, isSuccess, message } = useSelector((state) => state.posts);
 
     useEffect(() => {
         if (isError) {
@@ -51,12 +53,19 @@ const Post = () => {
         e.target.body.value = ""
     };
 
-    const post = posts.map((post) => {
+    const post = posts?.map((post) => {
+        const isAlreadyLiked = post.likes?.includes(user?.user._id)
         return (
             <div className="post" key={post._id}>
                 <Link to={"/posts/id/" + post._id}>
                     <p>{post.title}</p>
                 </Link>
+                <span>Likes: {post.likes?.length}</span>
+                    {isAlreadyLiked ? (
+                        <HeartFilled onClick={() => dispatch(dislike(post._id))} />
+                    ) : (
+                        <HeartOutlined onClick={() => dispatch(like(post._id))} />
+                    )}
             </div>
         )
     });
@@ -71,6 +80,6 @@ const Post = () => {
             <div>{post}</div>
         </>
     )
-};
+}
 
 export default Post

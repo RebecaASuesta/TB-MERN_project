@@ -47,12 +47,35 @@ const getInfo = async () => {
     return res.data
 };
 
+const like = async (_id) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const res = await axios.put(API_URL + "/posts/like/id/" + _id, {
+        headers: {
+            authorization: user?.token
+        }
+    });
+    console.log(res.data)
+    return res.data
+};
+
+const dislike = async (_id) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const res = await axios.put(API_URL + "/posts/dislike/id/" + _id, {
+        headers: {
+            authorization: user?.token
+        }
+    });
+    return res.data
+};
+
 const postsService = {
     getAll,
     getById,
     create,
     createComment,
-    getInfo
+    getInfo,
+    like,
+    dislike
 }
 
 export default postsService
