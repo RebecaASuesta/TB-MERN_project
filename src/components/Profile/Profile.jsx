@@ -22,14 +22,23 @@ const Profile = () => {
     }, []);
 
     const userPost = postIds?.map((userPost) => {
-        return (
-            <div key={userPost._id}>
-                <Link to={"/posts/id/" + userPost._id}>
-                    <p>{userPost.title}</p>
-                </Link>
-            </div>
-        )
-    })
+        if (userPost.length <= 0) {
+            return (
+                <div>
+                    <h3>Posts</h3>
+                    <p>Todavía no has publicado ningún post</p>
+                </div>
+            )
+        } else {
+            return (
+                <div key={userPost._id}>
+                    <Link to={"/posts/id/" + userPost._id}>
+                        <p>{userPost.title}</p>
+                    </Link>
+                </div>
+            )
+        }
+    });
 
     return (
         <>

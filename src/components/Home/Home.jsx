@@ -12,7 +12,8 @@ const Home = () => {
         if (e.key === "Enter") {
             navigate('/search/' + text);
         }
-      };  
+    };
+      
     return (
         <div>
             <h1>Home</h1>
