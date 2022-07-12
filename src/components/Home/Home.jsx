@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom'
 import "../Home/Home.scss"
 
 const Home = () => {
 
     const navigate = useNavigate();
+
+    const { user } = useSelector((state) => state.auth);
 
     const [text, setText] = useState("");
 
@@ -17,8 +20,17 @@ const Home = () => {
 
     return (
         <div className='home'>
-            {/* <h1>Home</h1> */}
-            <input onKeyUp={handleChange} placeholder="Buscar..." name="text" />
+            {user ?
+                <div className='search'>
+                    <h2>Busca aquí las actas</h2>
+                    <input onKeyUp={handleChange} placeholder="Buscar..." name="text" />
+                </div>
+                :
+                <div className='noSearch'>
+                    <h2><Link to="/login">Entra </Link> para ver las actas</h2>
+                    <h3>y, si todavía no formas parte de esta nuestra comunidad, <Link to="/register">múdate</Link></h3>
+                </div>
+            }
         </div>
     )
 }

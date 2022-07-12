@@ -3,14 +3,47 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 75vh;
+    height: calc(100vh + 200px);
     background-image: url('../../Assets/backgroundImage.jpg');
     background-position: center;
     background-size: cover;
     flex: 1;
-    input{
+    .search{
+        background-color: #4dcacea4;
+        padding: 2.5em;
         border-radius: 5px;
-        border-width: 1px;
-        border-color: lightgray;
+        width: 50vw;
+        input{
+            border-radius: 5px;
+            border-width: 1px;
+            border-color: lightgray;
+            width: 75%;
+        }
+    }
+    .noSearch{
+        background-color: #4dcacea4;
+        padding: 1.5em;
+        border-radius: 5px;
+        h2{
+            color: black;
+            a{
+                color: black;
+                font-weight: 500;
+            }
+            a:hover{
+                color: #FCCE33;
+            }
+        }
+        h3{
+            color: black;
+            a{
+                color: black;
+                font-weight: 500;
+            }
+            a:hover{
+                color: #FCCE33;
+            }
+        }
     }
 }
+
