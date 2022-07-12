@@ -52,9 +52,10 @@ const Post = (likes, _id) => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        await dispatch(create(formData));
+        dispatch(create(formData));
         e.target.title.value = "";
-        e.target.body.value = ""
+        e.target.body.value = "";
+        setFormData('')
     };
 
     const showModal = (_id) => {

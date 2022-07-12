@@ -28,7 +28,7 @@ const Home = () => {
                 :
                 <div className='noSearch'>
                     <h2><Link to="/login">Entra </Link> para ver las actas</h2>
-                    <h3>y, si todavía no formas parte de esta nuestra comunidad, <Link to="/register">múdate</Link></h3>
+                    <h3>y, si todavía no formas parte de ésta nuestra comunidad, <Link to="/register">múdate</Link></h3>
                 </div>
             }
         </div>
