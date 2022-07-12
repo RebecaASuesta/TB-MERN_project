@@ -26,7 +26,7 @@ const Login = () => {
             });
             setTimeout(() => {
                 navigate("/");
-            }, 2000)
+            }, 1000)
         }
         dispatch(reset())
     }, [isError, isSuccess, message, navigate, dispatch]);
@@ -69,7 +69,7 @@ const Login = () => {
                 <Form.Item className="ItemButton" wrapperCol={{ offset: 8, span: 16 }}
                 >
                     <Button type="primary" htmlType="submit">
-                        Enviar
+                        Entrar
                     </Button>
                 </Form.Item>
             </Form>
