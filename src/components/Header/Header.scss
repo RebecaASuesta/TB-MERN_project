@@ -1,0 +1,16 @@
+header{
+    display: flex;
+	justify-content: space-around;
+	padding: 1.5em;
+	background-color: #4DCACE;
+    span{
+		a{
+			color: black;
+			font-weight: 600;
+			font-size: 15px;
+		}
+		:hover{
+			color: #FCCE33;
+		}
+	}
+}

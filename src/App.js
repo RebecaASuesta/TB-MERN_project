@@ -17,15 +17,17 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/search/:postName" element={<Search />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/posts" element={<Posts />} />
-          <Route path="/posts/id/:_id" element={<PostDetail />} />
-        </Routes>
+        <div className='wrapper'>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/search/:postName" element={<Search />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/posts" element={<Posts />} />
+            <Route path="/posts/id/:_id" element={<PostDetail />} />
+          </Routes>
+        </div>
         <Footer />
       </BrowserRouter>
     </div>

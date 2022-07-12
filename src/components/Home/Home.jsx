@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+import "../Home/Home.scss"
 
 const Home = () => {
 
@@ -13,11 +14,11 @@ const Home = () => {
             navigate('/search/' + text);
         }
     };
-      
+
     return (
-        <div>
-            <h1>Home</h1>
-            <input onKeyUp={handleChange} placeholder="search post" name="text" />
+        <div className='home'>
+            {/* <h1>Home</h1> */}
+            <input onKeyUp={handleChange} placeholder="Buscar..." name="text" />
         </div>
     )
 }

@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { logout } from "../../features/auth/authSlice"
 import { useState } from "react"
+import "../Header/Header.scss"
 
 const Header = () => {
     const navigate = useNavigate();
@@ -17,7 +18,7 @@ const Header = () => {
         if (e.key === "Enter") {
             navigate('/search/' + text)
         }
-      };    
+    };
 
     const onLogout = (e) => {
         e.preventDefault();
@@ -26,24 +27,21 @@ const Header = () => {
     };
 
     return (
-        <nav>
-            <span>Header</span>
-            <div>
-                {user ?
-                    <>
-                        <span><Link to="/"> Home </Link></span>
-                        <span><Link to="/posts"> Posts </Link></span>
-                        <span><Link to="/profile"> {user.user.name} </Link> </span>
-                        <span><Link to="/" onClick={onLogout}> Logout </Link></span>
-                    </>
-                : 
-                    <>
-                        <span><Link to="/login"> Login </Link></span>
-                        <span><Link to="/register"> Register </Link></span>
-                    </>
-                }
-            </div>
-        </nav>
+        <header>
+            {user ?
+                <>
+                    <span><Link to="/"> Home </Link></span>
+                    <span><Link to="/posts"> Posts </Link></span>
+                    <span><Link to="/profile"> {user.user.name} </Link> </span>
+                    <span><Link to="/" onClick={onLogout}> Logout </Link></span>
+                </>
+                :
+                <>
+                    <span><Link to="/login"> Login </Link></span>
+                    <span><Link to="/register"> Register </Link></span>
+                </>
+            }
+        </header>
     )
 };
 
