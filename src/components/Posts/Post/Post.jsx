@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { reset, create, like, dislike, deletePost, getById } from "../../../features/posts/postsSlice"
 import { notification } from "antd"
 import "antd/dist/antd.css"
-import { HeartOutlined, HeartFilled, DeleteOutlined, EditOutlined } from "@ant-design/icons"
+import { LikeOutlined, LikeFilled, DislikeOutlined, DislikeFilled, DeleteOutlined, EditOutlined } from "@ant-design/icons"
 import EditModal from "./EditPost/EditPost"
 
 const Post = (likes, _id) => {
@@ -63,21 +63,40 @@ const Post = (likes, _id) => {
     };
 
     const post = posts?.map((post) => {
-        const isMyPost = post.userId == user.user._id
+        const isMyPost = post.userId == user.user._id;
+        const isLiked = post.likes.includes(user.user._id);
+        const isDisliked = post.dislikes.includes(user.user._id);
         return (
             <div className="post" key={post._id}>
                 <Link to={"/posts/id/" + post._id}>
                     <p>{post.title}</p>
                 </Link>
                 <span>
-                    <HeartOutlined onClick={() => dispatch(like(post._id))} />
-                    <HeartFilled onClick={() => dispatch(dislike(post._id))} />
+                    {
+                        isLiked ?
+                            <>
+                                <LikeFilled /> &nbsp;
+                                <DislikeOutlined />
+                            </>
+                            :
+                                isDisliked ?
+                                <>
+                                    <LikeOutlined /> &nbsp;
+                                    <DislikeFilled />
+                                </>
+                                :
+                                <>
+                                    <LikeOutlined onClick={() => dispatch(like(post._id))} /> &nbsp;
+                                    <DislikeOutlined onClick={() => dispatch(dislike(post._id))} />
+                                </>
+                    }
                 </span>
                 <span>
                     {
                         isMyPost ?
                             (<>
-                                <DeleteOutlined onClick={() => dispatch(deletePost(post._id))} />
+                                &nbsp; &nbsp;
+                                <DeleteOutlined onClick={() => dispatch(deletePost(post._id))} /> &nbsp;
                                 <EditOutlined onClick={() => showModal(post._id)} />
                             </>) : ""
                     }

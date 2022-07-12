@@ -54,7 +54,6 @@ const like = async (_id) => {
             authorization: user?.token
         }
     });
-    console.log(res.data)
     return res.data
 };
 

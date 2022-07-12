@@ -129,7 +129,6 @@ export const postsSlice = createSlice({
         });
 
         builder.addCase(create.fulfilled, (state, action) => {
-            console.log(action.payload);
             state.posts = [...state.posts, action.payload.post]
         });
 
@@ -146,7 +145,6 @@ export const postsSlice = createSlice({
         });
 
         builder.addCase(like.fulfilled, (state, action) => {
-            console.log(action.payload);
             const posts = state.posts?.map((post) => {
                 if (post._id === action.payload._id) {
                     post = action.payload
