@@ -49,7 +49,7 @@ const getInfo = async () => {
 
 const like = async (_id) => {
     const user = JSON.parse(localStorage.getItem("user"));
-    const res = await axios.put(API_URL + "/posts/like/id/" + _id, {
+    const res = await axios.put(API_URL + "/posts/like/id/" + _id, {}, {
         headers: {
             authorization: user?.token
         }
@@ -57,10 +57,11 @@ const like = async (_id) => {
     console.log(res.data)
     return res.data
 };
-
+// get/delete axios-(url,headers)
+//post/put(url,{},headers)
 const dislike = async (_id) => {
     const user = JSON.parse(localStorage.getItem("user"));
-    const res = await axios.put(API_URL + "/posts/dislike/id/" + _id, {
+    const res = await axios.put(API_URL + "/posts/dislike/id/" + _id, {}, {
         headers: {
             authorization: user?.token
         }
@@ -73,6 +74,16 @@ const getPostByName = async (postTitle) => {
     return res.data;
 };
 
+const deletePost = async (_id) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const res = await axios.delete(API_URL + "/posts/id/" + _id, {
+        headers: {
+            authorization: user?.token
+        }
+    })
+    return res.data
+};
+
 const postsService = {
     getAll,
     getById,
@@ -81,7 +92,8 @@ const postsService = {
     getInfo,
     like,
     dislike,
-    getPostByName
+    getPostByName,
+    deletePost
 }
 
 export default postsService

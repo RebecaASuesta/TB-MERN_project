@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
-import { reset, create, like, dislike } from "../../../features/posts/postsSlice"
+import { reset, create, like, dislike, deletePost } from "../../../features/posts/postsSlice"
 import { notification } from "antd"
 import "antd/dist/antd.css"
-import { HeartOutlined, HeartFilled } from "@ant-design/icons"
+import { HeartOutlined, HeartFilled, DeleteOutlined } from "@ant-design/icons"
 
 const Post = (likes, _id) => {
     const [formData, setFormData] = useState({
@@ -54,18 +54,18 @@ const Post = (likes, _id) => {
     };
 
     const post = posts?.map((post) => {
-        const isAlreadyLiked = post.likes?.includes(user?.user._id)
         return (
             <div className="post" key={post._id}>
                 <Link to={"/posts/id/" + post._id}>
                     <p>{post.title}</p>
                 </Link>
-                <span>Likes: {post.likes?.length}</span>
-                    {isAlreadyLiked ? (
-                        <HeartFilled onClick={() => dispatch(dislike(post._id))} />
-                    ) : (
-                        <HeartOutlined onClick={() => dispatch(like(post._id))} />
-                    )}
+                <span>
+                    <HeartOutlined onClick={() => dispatch(like(post._id))} />
+                    <HeartFilled onClick={() => dispatch(dislike(post._id))} />
+                </span>
+                <span>
+                   <DeleteOutlined onClick={() => dispatch(deletePost(post._id))} />  
+                </span>
             </div>
         )
     });
