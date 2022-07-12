@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
-import { reset, create, like, dislike, deletePost } from "../../../features/posts/postsSlice"
+import { reset, create, like, dislike, deletePost, getById } from "../../../features/posts/postsSlice"
 import { notification } from "antd"
 import "antd/dist/antd.css"
-import { HeartOutlined, HeartFilled, DeleteOutlined } from "@ant-design/icons"
+import { HeartOutlined, HeartFilled, DeleteOutlined, EditOutlined } from "@ant-design/icons"
+import EditModal from "./EditPost/EditPost"
 
 const Post = (likes, _id) => {
     const [formData, setFormData] = useState({
@@ -18,7 +19,10 @@ const Post = (likes, _id) => {
 
     const dispatch = useDispatch();
 
-    const { posts, user, isError, isSuccess, message } = useSelector((state) => state.posts);
+    const { posts, isError, isSuccess, message } = useSelector((state) => state.posts);
+    const { user } = useSelector((state) => state.auth);
+
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     useEffect(() => {
         if (isError) {
@@ -53,7 +57,13 @@ const Post = (likes, _id) => {
         e.target.body.value = ""
     };
 
+    const showModal = (_id) => {
+        dispatch(getById(_id));
+        setIsModalVisible(true)
+    };
+
     const post = posts?.map((post) => {
+        const isMyPost = post.userId == user.user._id
         return (
             <div className="post" key={post._id}>
                 <Link to={"/posts/id/" + post._id}>
@@ -64,8 +74,15 @@ const Post = (likes, _id) => {
                     <HeartFilled onClick={() => dispatch(dislike(post._id))} />
                 </span>
                 <span>
-                   <DeleteOutlined onClick={() => dispatch(deletePost(post._id))} />  
+                    {
+                        isMyPost ?
+                            (<>
+                                <DeleteOutlined onClick={() => dispatch(deletePost(post._id))} />
+                                <EditOutlined onClick={() => showModal(post._id)} />
+                            </>) : ""
+                    }
                 </span>
+
             </div>
         )
     });
@@ -78,6 +95,9 @@ const Post = (likes, _id) => {
                 <button type="submit">Publicar</button>
             </form>
             <div>{post}</div>
+            <span>
+                <EditModal visible={isModalVisible} setVisible={setIsModalVisible} />
+            </span>
         </>
     )
 }

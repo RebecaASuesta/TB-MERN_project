@@ -87,7 +87,7 @@ export const getPostByName = createAsyncThunk("posts/getPostByName", async (post
     } catch (error) {
         console.error(error)
     }
-    });
+});
 
 export const deletePost = createAsyncThunk("posts/id", async (_id) => {
     try {
@@ -96,6 +96,16 @@ export const deletePost = createAsyncThunk("posts/id", async (_id) => {
         console.error(error)
     }
 });
+
+export const update = createAsyncThunk(
+    "posts/update",
+    async (_id) => {
+        try {
+            return await postsService.update(_id)
+        } catch (error) {
+            console.error(error)
+        }
+    });
 
 export const postsSlice = createSlice({
     name: "posts",
@@ -113,28 +123,28 @@ export const postsSlice = createSlice({
         builder.addCase(getAll.pending, (state) => {
             state.isLoading = true
         });
-        
+
         builder.addCase(getById.fulfilled, (state, action) => {
             state.post = action.payload
         });
-        
+
         builder.addCase(create.fulfilled, (state, action) => {
             console.log(action.payload);
             state.posts = [...state.posts, action.payload.post]
         });
-        
+
         builder.addCase(createComment.fulfilled, (state, action) => {
             state.post.commentIds = [...state.post.commentIds, action.payload.comment]
         });
-        
+
         builder.addCase(getInfo.fulfilled, (state, action) => {
             state.userPosts = action.payload
         });
-        
+
         builder.addCase(getInfo.pending, (state) => {
             state.isLoading = true
         });
-        
+
         builder.addCase(like.fulfilled, (state, action) => {
             console.log(action.payload);
             const posts = state.posts?.map((post) => {
@@ -145,7 +155,7 @@ export const postsSlice = createSlice({
             })
             state.posts = posts
         });
-        
+
         builder.addCase(dislike.fulfilled, (state, action) => {
             const posts = state.posts?.map((post) => {
                 if (post._id === action.payload._id) {
@@ -155,7 +165,7 @@ export const postsSlice = createSlice({
             })
             state.posts = posts
         });
-        
+
         builder.addCase(getPostByName.fulfilled, (state, action) => {
             state.posts = action.payload;
         });
@@ -164,6 +174,16 @@ export const postsSlice = createSlice({
             state.posts = state.posts.filter(
                 (post) => post._id !== action.payload.post._id
             )
+        });
+        
+        builder.addCase(update.fulfilled, (state, action) => {
+            const posts = state.posts?.map((post) => {
+                if (post._id === action.payload.post._id) {
+                    post = action.payload.post
+                }
+                return post
+            })
+            state.posts = posts
         })
     }
 })
