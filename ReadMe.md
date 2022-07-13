@@ -3,71 +3,40 @@
 ## ÍNDICE
 
 * Sobre el proyecto
-    * Instalación y despliegue
     * Tecnologías utilizadas
     * Origen
 
-* Requerimientos
+* Requisitos
 
-* Estructura de la página
-
-* Documentacion de React
+* Estructura
 
 * Rutas
 
-* Retos presentados
-
-* Futura implementaciones
-
-* Agradecimientos
+* Futuras implementaciones
 
 * Autor
 
 ## Sobre el proyecto
 
-### Instalación y despliegue
-
-<!-- Primero instalamos react con la carpeta que contendrá el proyecto:
-
-```PowerShell
-npx create-react-app nombre-aplicacion
-```
-
-Una buena idea es instalar esta extensión para acceder a los snippets de React:
-
-https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets
-
-La siguiente herramienta de desarrollador nos permite ver las jerarquías de los componentes de React:
-
-https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=es
-
-Deberemos installar el siguiente paquete para poder crear rutas en nuestros componentes:
-
-```PowerShell
-$ npm install react-router-dom@6
-```
-
-Instalamos el paquete sass para aplicar reglas anidadas y funciones con variables entre otras cosas:
-
-```PowerShell
-$ npm install sass
-``` -->
-
 ### Tecnologías utilizadas
 
 FrontEnd:
+* JavaScript
 * CSS
 * Sass
-* Javascript
+* Ant Design
 * React
-* React-GlobalContext
+* React-Redux
 * React-Router
+* React-Dom
+* Axios
 
 BackEnd:
+* JavaScript
+* Node.js
+* Express
 * MongoDB
 * Mongoose
-* Express
-* Node.js
 
 ### Origen
 
@@ -75,117 +44,96 @@ Este proyecto se propuso como un ejercicio en el [bootcamp de FullStack Developm
 
 ## Requisitos
 
-[ ] Registro de usuarios.
+[X] Registro de usuarios.
 
-[ ] Login de usuarios.
+[X] Login de usuarios.
 
-[ ] Que se puedan ver las publicaciones y crear nuevas.
+[X] Que se puedan ver las publicaciones y crear nuevas.
 
-[ ] Que se puedan editar y eliminar las publicaciones que hace el usuario logeado.
+[X] Que se puedan editar y eliminar las publicaciones que hace el usuario logeado.
 
-[ ] Dar/quitar Like a post.
+[X] Dar/quitar Like a post.
 
-[ ] Buscador de perfiles de usuario o de posts.
+[X] Buscador de perfiles de usuario o de posts.
 
-[ ] Que en tu perfil puedas ver tus datos y tus posts.
+[X] Que en tu perfil puedas ver tus datos y tus posts.
 
-[ ] Que puedas comentar en las publicaciones.
+[X] Que puedas comentar en las publicaciones.
 
-[ ] Uso de ramas con git, cuando se termine el proyecto deberán quedar dos ramas la master o main y la develop.
+[X] Uso de ramas con git, cuando se termine el proyecto deberán quedar dos ramas la master o main y la develop.
 
-[ ] Presentación de README excelente.
+[X] Presentación de README excelente.
 
 Componentes mínimos:
 
-    [ ] Register
+    [X] Register
 
-    [ ] Login
+    [X] Login
 
-    [ ] Home
+    [X] Home
 
-    [ ] Posts
+    [X] Posts
 
-        [ ] Post
+        [X] Post
 
-        [ ] AddPost
+        [X] AddPost
 
-    [ ] Perfil. Vista perfil con los datos del usuario logeado y sus posts
+    [X] Perfil. Vista perfil con los datos del usuario logeado y sus posts
 
-    [ ] Header
+    [X] Header
 
-    [ ] Footer
+    [X] Footer
 
 Implementa React Router en tu página:
 
-    [ ] /home. Home de la app
+    [X] /home. Home de la app
 
-    [ ] /login
+    [X] /login
 
-    [ ] /register
+    [X] /register
 
-    [ ] /profile
+    [X] /profile
 
-[ ] Utilizar Redux
+[X] Utilizar Redux
 
-[ ] Uso de SASS
+[X] Uso de SASS
 
-[ ] Importante el diseño
+[X] Importante el diseño
 
 ## Estructura de la página
 
-<!-- Cada ruta construye una página con tres componentes: La cabecera y el pie de página son comunes a todas ellas. -->
+Cada ruta construye una página con tres componentes: El Header y el Footer que son siempre iguales (con la excepción del Header que difiere entre modo Log In y modo Log Out) y el "Body" que es el componente que va variando en función de la ruta en la que te encuentras.
 
 ## Rutas
 
 HOME:
-* Navbar
-* Imagen central
-* Footer
+* Modo Log Out:
 
-<!-- ![Home screenshot](./src/Assets/Home_Ecommerce.png) -->
+![Home Log Out](./src/Assets/HomeLogOut.PNG)
 
-<!-- POSTS:
-* Navbar
-* Productos
-* Footer
+* Modo Log In:
 
-Mostramos en pantalla el resultado de la petición a nuestra base de datos para que nos traiga todos lo productos. -->
+![Home Log In](./src/Assets/HomeLogIn.PNG)
 
-<!-- ![Products screenshot](./src/Assets/Products_E-commerce.png) -->
+POSTS:
+
+![Posts](./src/Assets/Posts.PNG)
+
+POSTDETAIL:
+
+![Post Detail](./src/Assets/PostDetail.PNG)
 
 PROFILE:
-* Navbar
-* Datos personales
-* Posts
-* Footer
 
-<!-- ![Profile screenshot](./src/Assets/Perfil_E-commerce.png) -->
+![Profile](./src/Assets/Profile.PNG)
 
 REGISTER:
 
-* Navbar
-* Formulario de registro
-* Footer
-
-<!-- ![Register screenshot](./src/Assets/Registro_E-commerce.png) -->
+![Register](./src/Assets/Register.PNG)
 
 LOGIN:
 
-* Navbar
-* Formulario de LogIn
-* Footer
-
-<!-- ![Login screenshot](./src/Assets/Login_E-commerce.png) -->
-
-## Documentación de React
-
-https://es.reactjs.org/docs/getting-started.html
-
-## Retos presentados
-
-<!-- * Realizar una suma dentro de un map.
-
-* Fluidez a la hora de controlar los estados y sus ciclos de vida. -->
+![Log In](./src/Assets/LogIn.PNG)
 
 ## Futuras implementaciones:
 
@@ -210,14 +158,6 @@ https://es.reactjs.org/docs/getting-started.html
 [ ] Implementación de guards
 
 [ ] Que sea responsive
-
-## Agradecimientos:
-
-<!-- Como siempre, a los profes ([Sofía](https://github.com/SofiaPinilla), [Geer](https://github.com/GeerDev) e [Iván](https://github.com/ivanpuebla10)).
-
-A los compis, en especial a [Yorch](https://github.com/Yorch82) y [Vincent](https://github.com/Vincecoorp21) por ayudarnos con el Backend en general, a [David](https://github.com/Dubesor22) por enseñarnos a sumar y a [Mike](https://github.com/MrSetOne) por ayudarnos con el Frontend.
-
-Y, por último a [Miguel](https://github.com/Mik3Tab) por ayudarnos a resolver unos bugs. -->
 
 ## Autores:
 

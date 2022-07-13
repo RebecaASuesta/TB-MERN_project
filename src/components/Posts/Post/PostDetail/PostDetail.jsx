@@ -52,7 +52,7 @@ const PostDetail = () => {
 
     return (
         <>
-            <div>
+            <div className="postDetail">
                 <h3>{post.title}</h3>
                 <p>{post.body}</p>
                 <p>{commentBody}</p>
