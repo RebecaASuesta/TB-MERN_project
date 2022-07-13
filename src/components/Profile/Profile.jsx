@@ -43,12 +43,12 @@ const Profile = () => {
     return (
         <>
             <div>
-                <h1>Profile</h1>
+                <h2>Datos personales</h2>
                 <p>{user.user.name}</p>
                 <p>{user.user.email}</p>
             </div>
             <div>
-                <h3>Posts</h3>
+                <h2>Actas</h2>
                 <div>{userPost}</div>
             </div>
         </>

@@ -1,0 +1,20 @@
+.createPost {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5em;
+
+    .form {
+        .ItemButton {
+            Button {
+                background-color: #4DCACE;
+                border: none;
+
+                :hover {
+                    color: black;
+                }
+            }
+        }
+    }
+}

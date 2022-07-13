@@ -2,24 +2,26 @@ import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 import { reset, create, like, dislike, deletePost, getById } from "../../../features/posts/postsSlice"
-import { notification } from "antd"
+import { notification, Form, Input, Button } from "antd"
 import "antd/dist/antd.css"
 import { LikeOutlined, LikeFilled, DislikeOutlined, DislikeFilled, DeleteOutlined, EditOutlined } from "@ant-design/icons"
 import EditModal from "./EditPost/EditPost"
+import "../Post/Post.scss"
 
 const Post = (likes, _id) => {
-    const [formData, setFormData] = useState({
-        title: '',
-        body: ''
-    })
+    // const [formData, setFormData] = useState({
+    //     title: '',
+    //     body: ''
+    // })
 
-    const { title, body } = formData;
+    // const { title, body } = formData;
 
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
 
     const { posts, isError, isSuccess, message } = useSelector((state) => state.posts);
+    
     const { user } = useSelector((state) => state.auth);
 
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -38,24 +40,32 @@ const Post = (likes, _id) => {
             });
             setTimeout(() => {
                 navigate("/posts");
-            }, 2000)
+            }, 1000)
         }
         dispatch(reset())
     }, [isError, isSuccess, message, navigate, dispatch]);
 
-    const onChange = (e) => {
-        setFormData((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value
-        }))
+    // const onChange = (e) => {
+    //     setFormData((prevState) => ({
+    //         ...prevState,
+    //         [e.target.name]: e.target.value
+    //     }))
+    // };
+
+    // const onSubmit = async (e) => {
+    //     e.preventDefault();
+    //     dispatch(create(formData));
+    //     e.target.title.value = "";
+    //     e.target.body.value = "";
+    //     setFormData('')
+    // };
+
+    const onFinish = (values) => {
+        dispatch(create(values))
     };
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        dispatch(create(formData));
-        e.target.title.value = "";
-        e.target.body.value = "";
-        setFormData('')
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
     };
 
     const showModal = (_id) => {
@@ -109,12 +119,46 @@ const Post = (likes, _id) => {
 
     return (
         <>
-            <form onSubmit={onSubmit}>
+            {/* <form onSubmit={onSubmit}>
                 <input type="text" name="title" value={title} onChange={onChange} />
                 <input type="text" name="body" value={body} onChange={onChange} />
                 <button type="submit">Publicar</button>
-            </form>
-            <div>{post}</div>
+            </form> */}
+            <div className="createPost">
+                <h2>Publica un acta</h2>
+                <Form className="form"
+                    name="basic"
+                    labelCol={{ span: 8 }}
+                    wrapperCol={{ span: 16 }}
+                    initialValues={{ remember: true }}
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
+                    autoComplete="off"
+                >
+                    <Form.Item className="input"
+                    label="Título"
+                    name="title"
+                    rules={[{ required: true, message: 'Introduce un título, un poquito de por favor!' }]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item className="input"
+                        label="Descripción"
+                        name="body"
+                        rules={[{ required: true, message: 'Introduce una descripción, un poquito de por favor!' }]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item className="ItemButton" wrapperCol={{ offset: 8, span: 16 }}
+                    >
+                        <Button type="primary" htmlType="submit">
+                            Publicar
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </div>
+            <h2>Lista de actas</h2>
+            <div className="postList">{post}</div>
             <span>
                 <EditModal visible={isModalVisible} setVisible={setIsModalVisible} />
             </span>

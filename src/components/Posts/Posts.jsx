@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAll, reset } from '../../features/posts/postsSlice'
 import Post from './Post/Post'
+import "../Posts/Posts.scss"
 
 const Posts = () => {
 
@@ -23,8 +24,7 @@ const Posts = () => {
     };
 
     return (
-        <div>
-            <h1>Posts</h1>
+        <div className='post'>
             <Post />
         </div>
     )
