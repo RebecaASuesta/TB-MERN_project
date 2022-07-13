@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { getInfo, reset } from "../../features/posts/postsSlice"
+import "../Profile/Profile.scss"
 
 const Profile = () => {
     const { user } = useSelector((state) => state.auth);
@@ -33,12 +34,12 @@ const Profile = () => {
 
     return (
         <>
-            <div>
+            <div className="data">
                 <h2>Datos personales</h2>
                 <p>{user.user.name}</p>
                 <p>{user.user.email}</p>
             </div>
-            <div>
+            <div className="userPosts">
                 <h2>Actas</h2>
                 <div>{userPost}</div>
             </div>
