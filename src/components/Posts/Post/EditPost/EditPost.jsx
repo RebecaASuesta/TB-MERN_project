@@ -40,21 +40,21 @@ const EditModal = ({ visible, setVisible }) => {
 
     return (
         <Modal
-            title="Edit post"
+            title="Modifica tu acta"
             visible={visible}
             onCancel={handleCancel}
             footer={[]}
         >
             <Form onFinish={onFinish} form={form}>
-                <Form.Item label="Post title" name="title">
-                    <Input placeholder="Post title" />
+                <Form.Item label="Título" name="title">
+                    <Input placeholder="Título" />
                 </Form.Item>
-                <Form.Item label="Post body" name="body">
-                    <Input placeholder="Post body" />
+                <Form.Item label="Descripción" name="body">
+                    <Input placeholder="Descripción" />
                 </Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit">
-                        Submit
+                        Modificar
                     </Button>
                 </Form.Item>
             </Form>

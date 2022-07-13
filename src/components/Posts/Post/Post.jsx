@@ -8,14 +8,9 @@ import { LikeOutlined, LikeFilled, DislikeOutlined, DislikeFilled, DeleteOutline
 import EditModal from "./EditPost/EditPost"
 import "../Post/Post.scss"
 
-const Post = (likes, _id) => {
-    // const [formData, setFormData] = useState({
-    //     title: '',
-    //     body: ''
-    // })
+const { TextArea } = Input;
 
-    // const { title, body } = formData;
-
+const Post = (_id) => {
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
@@ -39,29 +34,15 @@ const Post = (likes, _id) => {
                 description: message
             });
             setTimeout(() => {
-                navigate("/posts");
+                navigate("/profile");
             }, 1000)
         }
         dispatch(reset())
     }, [isError, isSuccess, message, navigate, dispatch]);
 
-    // const onChange = (e) => {
-    //     setFormData((prevState) => ({
-    //         ...prevState,
-    //         [e.target.name]: e.target.value
-    //     }))
-    // };
-
-    // const onSubmit = async (e) => {
-    //     e.preventDefault();
-    //     dispatch(create(formData));
-    //     e.target.title.value = "";
-    //     e.target.body.value = "";
-    //     setFormData('')
-    // };
-
     const onFinish = (values) => {
-        dispatch(create(values))
+        dispatch(create(values));
+        navigate("/profile");
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -119,11 +100,6 @@ const Post = (likes, _id) => {
 
     return (
         <>
-            {/* <form onSubmit={onSubmit}>
-                <input type="text" name="title" value={title} onChange={onChange} />
-                <input type="text" name="body" value={body} onChange={onChange} />
-                <button type="submit">Publicar</button>
-            </form> */}
             <div className="createPost">
                 <h2>Publica un acta</h2>
                 <Form className="form"
@@ -147,7 +123,7 @@ const Post = (likes, _id) => {
                         name="body"
                         rules={[{ required: true, message: 'Introduce una descripción, un poquito de por favor!' }]}
                     >
-                        <Input />
+                        <TextArea />
                     </Form.Item>
                     <Form.Item className="ItemButton" wrapperCol={{ offset: 8, span: 16 }}
                     >
